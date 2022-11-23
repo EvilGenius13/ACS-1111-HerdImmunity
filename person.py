@@ -21,7 +21,7 @@ class Person(object):
         # Set their properties to show this
         # TODO: The method Should return a Boolean showing if they survived.
         if self.infection:
-            if chance_of_infection < self.infection.mortality_rate: #is this even the call?
+            if chance_of_infection < self.infection.mortality_rate:
                 self.is_alive = False
             else:
                 self.is_alive = True
@@ -58,7 +58,7 @@ def infected_person_test():
     assert infected_person.infection is virus
     
 def infection_survival_test():
-    virus = Virus("Dysentry", 0.7, 0.5)
+    virus = Virus("CoinFlip", 0.7, 0.5)
     test_infection_person = Person(4, False, virus)
     assert test_infection_person._id == 4
     assert test_infection_person.is_alive is True
@@ -67,9 +67,14 @@ def infection_survival_test():
     #TODO: Need to test how if they survive in a test
     surival_chance = test_infection_person.did_survive_infection()
     if surival_chance:
-        print("He lived and this works")
+        assert test_infection_person.is_alive is True
+        assert test_infection_person.is_vaccinated is True
+        assert test_infection_person.infection is None
+
     else:
-        print("He didn't live and this works")
+        assert test_infection_person.is_alive is False
+        assert test_infection_person.is_vaccinated is False
+
 
 
 
@@ -80,27 +85,31 @@ if __name__ == "__main__":
     infected_person_test()
     infection_survival_test()
 
-    people = []
-    for i in range(1, 100):
-        # TODO Make a person with an infection
-        # TODO Append the person to the people list
-        pass
-
-
     # You need to check the survival of an infected person. Since the chance
     # of survival is random you need to check a group of people. 
     # Create a list to hold 100 people. Use the loop below to make 100 people
     # Now that you have a list of 100 people. Resolve whether the Person 
     # survives the infection or not by looping over the people list. 
+    virus = Virus('Zombie Outbreak', 0.6, 0.3)
+    patient_zero = Person('PatientZero', False, virus)
+    patient_zero.did_survive_infection()
+    people = []
+    for i in range(1, 101):
+        person = Person(i, False, virus)
+        people.append(person)
+        person.did_survive_infection()
 
-    # for person in people:
-    #     # For each person call that person's did_survive_infection method
-    #     survived = person.did_survive_infection()
-
-    # Count the people that survived and did not survive: 
-   
-    # did_survived = 0
-    # did_not_survive = 0
+    
+    death_count = 0
+    survived_count = 0
+    for person in people:
+        if person.is_alive:
+            survived_count += 1
+        else:
+            death_count += 1
+    print(f"Surived Count: {survived_count}")
+    print(f"Death Count: {death_count}")
+    print(f"Mortality Rate: {death_count / 100 }")
 
     # TODO Loop over all of the people 
     # TODO If a person is_alive True add one to did_survive
