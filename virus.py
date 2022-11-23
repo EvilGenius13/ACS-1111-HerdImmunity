@@ -26,3 +26,4 @@ def test_virus():
     print(flu.name, flu.repro_rate, flu.mortality_rate)
 
 test_virus()
+print('---------------------------')
