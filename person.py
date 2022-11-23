@@ -20,8 +20,8 @@ class Person(object):
         # Otherwise they have survived infection and they are now vaccinated. 
         # Set their properties to show this
         # TODO: The method Should return a Boolean showing if they survived.
-        if self.infection == True:
-            if chance_of_infection < self.infection.mortality_rate:
+        if self.infection:
+            if chance_of_infection < self.infection.mortality_rate: #is this even the call?
                 self.is_alive = False
             else:
                 self.is_alive = True
@@ -57,14 +57,28 @@ def infected_person_test():
     assert infected_person.is_vaccinated is False
     assert infected_person.infection is virus
     
-def survived_infection_test():
-    pass
+def infection_survival_test():
+    virus = Virus("Dysentry", 0.7, 0.5)
+    test_infection_person = Person(4, False, virus)
+    assert test_infection_person._id == 4
+    assert test_infection_person.is_alive is True
+    assert test_infection_person.is_vaccinated is False
+    assert test_infection_person.infection is virus
+    #TODO: Need to test how if they survive in a test
+    surival_chance = test_infection_person.did_survive_infection()
+    if surival_chance:
+        print("He lived and this works")
+    else:
+        print("He didn't live and this works")
+
+
 
 if __name__ == "__main__":
-    print('is this working?')
+    print('***Friendly reminder that assertions only pop if they fail***')
     vaccinated_person_test()
     unvaccinated_person_test()
     infected_person_test()
+    infection_survival_test()
 
     people = []
     for i in range(1, 100):
