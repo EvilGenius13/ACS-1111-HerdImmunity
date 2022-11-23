@@ -64,6 +64,7 @@ if __name__ == "__main__":
     print('is this working?')
     vaccinated_person_test()
     unvaccinated_person_test()
+    infected_person_test()
 
     people = []
     for i in range(1, 100):
