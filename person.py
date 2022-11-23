@@ -29,6 +29,10 @@ class Person(object):
                 self.infection = None
             return self.is_alive
 
+
+
+
+
 if __name__ == "__main__":
     # This section is incomplete finish it and use it to test your Person class
     # TODO Define a vaccinated person and check their attributes
