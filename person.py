@@ -1,7 +1,6 @@
 import random
 from virus import Virus
 
-
 class Person(object):
    
     def __init__(self, _id, is_vaccinated, infection = None):
@@ -29,9 +28,6 @@ class Person(object):
                 self.infection = None
             return self.is_alive
 
-
-
-    
     # Vaccinated Test
 def vaccinated_person_test():
     vaccinated_person = Person(1, True)
@@ -75,9 +71,7 @@ def infection_survival_test():
         assert test_infection_person.is_alive is False
         assert test_infection_person.is_vaccinated is False
 
-
-
-
+# Testing Area
 if __name__ == "__main__":
     print('***Friendly reminder that assertions only pop if they fail***')
     vaccinated_person_test()
@@ -85,11 +79,6 @@ if __name__ == "__main__":
     infected_person_test()
     infection_survival_test()
 
-    # You need to check the survival of an infected person. Since the chance
-    # of survival is random you need to check a group of people. 
-    # Create a list to hold 100 people. Use the loop below to make 100 people
-    # Now that you have a list of 100 people. Resolve whether the Person 
-    # survives the infection or not by looping over the people list. 
     virus = Virus('Zombie Outbreak', 0.6, 0.3)
     patient_zero = Person('PatientZero', False, virus)
     patient_zero.did_survive_infection()
@@ -99,7 +88,6 @@ if __name__ == "__main__":
         people.append(person)
         person.did_survive_infection()
 
-    
     death_count = 0
     survived_count = 0
     for person in people:
@@ -109,16 +97,7 @@ if __name__ == "__main__":
             death_count += 1
     print(f"Surived Count: {survived_count}")
     print(f"Death Count: {death_count}")
-    print(f"Mortality Rate: {death_count / 100 }")
-
-    # TODO Loop over all of the people 
-    # TODO If a person is_alive True add one to did_survive
-    # TODO If a person is_alive False add one to did_not_survive
-
-    # TODO When the loop is complete print your results.
-    # The results should roughly match the mortality rate of the virus
-    # For example if the mortality rate is 0.2 rough 20% of the people 
-    # should succumb. 
+    print(f"Comparison: Virus Mortality: {virus.mortality_rate} | Simulation Mortality: {death_count / 100 }")
 
     # Stretch challenge! 
     # Check the infection rate of the virus by making a group of 
