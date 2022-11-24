@@ -99,13 +99,12 @@ if __name__ == "__main__":
     print(f"Death Count: {death_count}")
     print(f"Comparison: Virus Mortality: {virus.mortality_rate} | Simulation Mortality: {death_count / 100 }")
 
-    # Stretch challenge! 
-    # Check the infection rate of the virus by making a group of 
-    # unifected people. Loop over all of your people. 
-    # Generate a random number. If that number is less than the 
-    # infection rate of the virus that person is now infected. 
-    # Assign the virus to that person's infection attribute. 
-
-    # Now count the infected and uninfect people from this group of people. 
-    # The number of infectedf people should be roughly the same as the 
-    # infection rate of the virus.
+    
+    #Stretch challenge using Zombie Outbreak Virus
+    stretch_infected_people=[]
+    for i in range(1, 101):
+        person = Person(i, False)
+        if random.random() < virus.repro_rate:
+            person.infection = virus
+            stretch_infected_people.append(person)
+    print(f'Infected: {len(stretch_infected_people)}, Uninfected: {100 - len(stretch_infected_people)} ')

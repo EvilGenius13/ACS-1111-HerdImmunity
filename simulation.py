@@ -1,5 +1,4 @@
 import random, sys
-# random.seed(42)
 from person import Person
 from logger import Logger
 from virus import Virus
@@ -9,11 +8,14 @@ class Simulation(object):
     def __init__(self, virus, pop_size, vacc_percentage, initial_infected=1):
         # TODO: Create a Logger object and bind it to self.logger.
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
-        
-        # TODO: Store the virus in an attribute
-        # TODO: Store pop_size in an attribute
-        # TODO: Store the vacc_percentage in a variable
-        # TODO: Store initial_infected in a variable
+        self.virus = virus
+        self.pop_size = pop_size #to be number
+        self.vacc_percentage = vacc_percentage #to be decimal 0-1
+        self.initial_infected = initial_infected #to be decimal 0-1
+        self.people = []
+        self._create_population()
+
+
         # You need to store a list of people (Person instances)
         # Some of these people will be infected some will not. 
         # Use the _create_population() method to create the list and 
@@ -22,6 +24,8 @@ class Simulation(object):
         pass
 
     def _create_population(self):
+        
+        
         # TODO: Create a list of people (Person instances). This list 
         # should have a total number of people equal to the pop_size. 
         # Some of these people will be uninfected and some will be infected.
