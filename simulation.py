@@ -13,7 +13,7 @@ class Simulation(object):
         self.vacc_percentage = vacc_percentage #to be decimal 0-1
         self.initial_infected = initial_infected #to be decimal 0-1
         
-       
+    
         self.population = self._create_population()
 
     def _create_population(self):
@@ -25,7 +25,19 @@ class Simulation(object):
 
         unvaccinated_group = self.pop_size - self.initial_infected - vaccinated_group
         
+        infected_group = self.initial_infected
 
+        # Testing
+        print(f"Vaccinated: {vaccinated_group}")
+        print(f"Unvaccinated: {unvaccinated_group}")
+        print(f"Infected: {infected_group}")
+        
+        # id_num = 0
+        # for id in range(0, vaccinated_group):
+        #     id_num += 1 
+        #     person = Person(id_num, False, None)
+        #     start_population.append(person)
+        
 
         # TODO: Create a list of people (Person instances). This list 
         # should have a total number of people equal to the pop_size. 
@@ -109,9 +121,9 @@ if __name__ == "__main__":
     virus = Virus(virus_name, repro_num, mortality_rate)
 
     # Simulation Setup
-    pop_size = 1000
+    pop_size = 100
     vacc_percentage = 0.1
     initial_infected = 10
     sim = Simulation(virus, pop_size, vacc_percentage, initial_infected)
 
-    #sim.run()
+    sim.run()
