@@ -5,20 +5,13 @@ class Person(object):
    
     def __init__(self, _id, is_vaccinated, infection = None):
         
-        self._id = _id  # probably should tick up by number
-        self.is_alive = True #should start true
-        self.is_vaccinated = is_vaccinated #have to set to none?
-        self.infection = infection #seems to be none
+        self._id = _id  
+        self.is_alive = True 
+        self.is_vaccinated = is_vaccinated 
+        self.infection = infection 
 
     def did_survive_infection(self):
-        # TODO Only called if infection attribute is not None.
         chance_of_infection = random.random()
-        # Check generate a random number between 0.0 - 1.0
-        # If the number is less than the mortality rate of the 
-        # person's infection they have passed away. 
-        # Otherwise they have survived infection and they are now vaccinated. 
-        # Set their properties to show this
-        # TODO: The method Should return a Boolean showing if they survived.
         if self.infection:
             if chance_of_infection < self.infection.mortality_rate:
                 self.is_alive = False
@@ -53,6 +46,7 @@ def infected_person_test():
     assert infected_person.is_vaccinated is False
     assert infected_person.infection is virus
     
+    # Infection Survival Test
 def infection_survival_test():
     virus = Virus("CoinFlip", 0.7, 0.5)
     test_infection_person = Person(4, False, virus)
@@ -60,7 +54,7 @@ def infection_survival_test():
     assert test_infection_person.is_alive is True
     assert test_infection_person.is_vaccinated is False
     assert test_infection_person.infection is virus
-    #TODO: Need to test how if they survive in a test
+
     surival_chance = test_infection_person.did_survive_infection()
     if surival_chance:
         assert test_infection_person.is_alive is True
@@ -79,6 +73,7 @@ if __name__ == "__main__":
     infected_person_test()
     infection_survival_test()
 
+    # First Full Virus Test
     virus = Virus('Zombie Outbreak', 0.6, 0.3)
     patient_zero = Person('PatientZero', False, virus)
     patient_zero.did_survive_infection()
@@ -99,8 +94,7 @@ if __name__ == "__main__":
     print(f"Death Count: {death_count}")
     print(f"Comparison: Virus Mortality: {virus.mortality_rate} | Simulation Mortality: {death_count / 100 }")
 
-    
-    #Stretch challenge using Zombie Outbreak Virus
+    # Stretch challenge using Zombie Outbreak Virus
     stretch_infected_people=[]
     for i in range(1, 101):
         person = Person(i, False)
