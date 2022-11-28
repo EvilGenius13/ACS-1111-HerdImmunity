@@ -24,8 +24,9 @@ class Simulation(object):
         self.total_infected = 0
         
         self.time_step_counter = 0
+        self.file_name = f"{virus.name}.{pop_size}.{vacc_percentage}.{initial_infected}.md"
+        self.logger = Logger(self.file_name)
         self.population = self._create_population()
-        self.logger = Logger
 
     def _create_population(self):
         start_population = []
@@ -61,6 +62,7 @@ class Simulation(object):
         
         # * Testing
         print(f"Total Pop: {int(self.pop_size)}")
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, virus.name, virus.mortality_rate, virus.repro_rate)
         return start_population
 
     def _simulation_should_continue(self):
@@ -138,10 +140,11 @@ if __name__ == "__main__":
 
     # Set some values used by the simulation
     pop_size = 1000
-    vacc_percentage = 0.1
-    initial_infected = 10
+    vacc_percentage = 0.2
+    initial_infected = 50
 
     # Make a new instance of the simulation
     sim = Simulation(virus, pop_size, vacc_percentage, initial_infected)
 
     sim.run()
+    sim.logger.write_metadata(pop_size, vacc_percentage, virus.name, virus.mortality_rate, virus.repro_rate)
