@@ -45,14 +45,12 @@ class Logger(object):
         # Append the results of the infection to the logfile
         pass
 
-    def log_time_step(self, time_step_counter, population_alive, population_infected, population_dead, newly_infected, newly_dead):
+    def log_time_step(self, time_step_counter, population_alive, population_infected, population_dead):
         f = open(self.file_name, "a")
         f.write(f"## Iteration : {time_step_counter}\n")
         f.write(f"+ Population Alive : {population_alive}\n")
         f.write(f"+ Population Infected : {population_infected}\n")
         f.write(f"+ Population Dead : {population_dead}\n")
-        f.write(f"+ Newly Infected : {newly_infected}\n")
-        f.write(f"+ Newly Dead : {newly_dead}\n")
         f.close()
 
     # ! Logging Functions for testing purposes
@@ -66,26 +64,33 @@ class Logger(object):
         f.write(f"```\n")
         f.close()
     
-    def log_simulation_should_continue(self, check_dead, check_vac, check_alive):
+    def log_simulation_should_continue(self, check_dead, check_vac, check_alive, check_infected):
         f = open(self.file_name, "a")
         f.write(f"```diff\n")
         f.write(f"! simulation_should_continue() !\n")
         f.write(f"+ Alive : {check_alive}\n")
         f.write(f"+ Dead : {check_dead}\n")
         f.write(f"+ Vaccinated : {check_vac}\n")
+        f.write(f"+ Vaccinated : {check_infected}\n")
         f.write(f"```\n")
         f.close()
 
     def log_run(self):
         pass
 
-    def log_person_randomizer(self, random_person_id, random_person_vac, random_person_virus):
+    def log_interaction(self, newly_infected, total_infected):
         f = open(self.file_name, "a")
         f.write(f"```diff\n")
-        f.write(f"! Person Randomizer !\n")
-        f.write(f"+ ID : {random_person_id}\n")
-        f.write(f"+ Vaccinated? : {random_person_vac}\n")
-        f.write(f"+ Infected? : {random_person_virus}\n")
+        f.write(f"! Interaction !\n")
+        f.write(f"+ Newly Infected : {newly_infected}\n")
+        f.write(f"+ Total Infected : {total_infected}\n")
         f.write(f"```\n")
         f.close()
 
+    def log_newly_infected(self, newly_infected):
+        f = open(self.file_name, "a")
+        f.write(f"```diff\n")
+        f.write(f"! Infect Newly Infected !\n")
+        f.write(f"+ Newly Infected : {newly_infected}\n")
+        f.write(f"```\n")
+        f.close()
