@@ -15,10 +15,13 @@ class Simulation(object):
         
         self.newly_infected = []
         self.body_bag = []
-        self.total_alive = 0
+        self.total_alive = self.pop_size
         self.total_dead = 0
         self.total_infected = 0
+        self.change_infected = initial_infected
         self.total_vaccinated = 0
+        self.change_vaccinated = 0
+        self.change_dead = 0
         
         self.time_step_counter = 0
         self.file_name = f"{virus.name}.{pop_size}.{vacc_percentage}.{initial_infected}.md"
@@ -39,7 +42,8 @@ class Simulation(object):
 
         id_num = 0
         for num in range(vaccinated_group):
-            id_num += 1 
+            id_num += 1
+            self.change_vaccinated += 1 
             person = Person(id_num, True, None)
             start_population.append(person)
         
@@ -54,10 +58,23 @@ class Simulation(object):
             person = Person(id_num, False, self.virus)
             start_population.append(person)
 
-        self.logger.write_metadata(self.pop_size, self.vacc_percentage, virus.name, virus.mortality_rate, virus.repro_rate)
-        self.logger.log_create_population(vaccinated_group, unvaccinated_group, infected_group)
+        vac_per = self.vacc_percentage * 100
+        vir_mor_per = self.virus.mortality_rate * 100
+        vir_rep_per = self.virus.repro_rate * 100
+
+        self.logger.write_metadata(self.pop_size, vac_per, virus.name, vir_mor_per, vir_rep_per, self.initial_infected)
+        self.logger.log_create_population(vaccinated_group, unvaccinated_group, infected_group, self.pop_size)
         return start_population
 
+    # ? TESTING FUNCTION
+    def _sim_change_percent(self, num1, num2):
+        if num1 == 0:
+            return -100
+        elif num2 == 0:
+            return "Inf"
+        else:
+            return round(((num1 - num2) / num2 ) * 100, 2)
+    
     # * OKAY
     def _simulation_should_continue(self):
         sim_check_dead = 0
@@ -77,7 +94,18 @@ class Simulation(object):
             if person.infection:
                 sim_check_infections += 1
 
-        self.logger.log_simulation_should_continue(self.time_step_counter, sim_check_dead, sim_check_vaccinated, sim_check_alive, sim_check_infections)
+        # ! STAGING AREA
+        change_alive = self._sim_change_percent(sim_check_alive, self.total_alive)
+        change_infected = self._sim_change_percent(sim_check_infections, self.change_infected)
+        change_vaccinated = self._sim_change_percent(sim_check_vaccinated, self.change_vaccinated)
+        change_dead = self._sim_change_percent(sim_check_dead, self.change_dead)
+        self.total_alive = sim_check_alive
+        self.change_infected = sim_check_infections
+        self.change_vaccinated = sim_check_vaccinated
+        self.change_dead = sim_check_dead
+
+        self.logger.log_simulation_should_continue(self.time_step_counter, sim_check_dead, change_dead, sim_check_vaccinated, 
+            change_vaccinated, sim_check_alive, change_alive, sim_check_infections, change_infected)
         
         if sim_check_dead == self.pop_size:
             return False
@@ -94,14 +122,15 @@ class Simulation(object):
         # if the simulation should continue or False if not.
         pass
 
-    # ? PRODUCTION ATTEMPT
+    # * OKAY
     def run(self):
-        print(f"Simulation started. Please click on the log to view updates")
+        print(f"Simulation started. Please click on the log to view updates.")
         self.time_step_counter = 0
         should_continue = True
 
 
         while should_continue:
+            print(f"Calculating Iteration {self.time_step_counter}")
             # TODO: Increment the time_step_counter
             # TODO: for every iteration of this loop, call self.time_step() 
             # Call the _simulation_should_continue method to determine if 
@@ -124,7 +153,7 @@ class Simulation(object):
         # TODO: When the simulation completes you should conclude this with 
         # the logger. Send the final data to the logger. 
 
-    # ? PRODUCTION ATTEMPT
+    # * OKAY
     def time_step(self):
         interaction_length = 100
         if (len(self.population)) < 100:
@@ -165,7 +194,7 @@ class Simulation(object):
         pass
 
 
-    # ? PRODUCTION ATTEMPT    
+    # * OKAY    
     def interaction(self, infected_person, random_person):
         # TODO: Finish this method.
         
@@ -186,7 +215,7 @@ class Simulation(object):
             #     attribute can be changed to True at the end of the time step.
         # TODO: Call logger method during this method.
 
-    # ? PRODUCTION ATTEMPT
+    # * OKAY
     def _infect_newly_infected(self):
         #newly_infected_num = len(self.newly_infected)
         #self.logger.log_newly_infected(newly_infected_num)
@@ -204,15 +233,15 @@ class Simulation(object):
 
 if __name__ == "__main__":
     # Test your simulation here
-    virus_name = "Sniffles"
+    virus_name = "Coin Flip"
     repro_num = 0.5
-    mortality_rate = 0.12
+    mortality_rate = 0.5
     virus = Virus(virus_name, repro_num, mortality_rate)
 
     # Set some values used by the simulation
     pop_size = 10000
-    vacc_percentage = 0.2
-    initial_infected = 50
+    vacc_percentage = 0.1
+    initial_infected = 100
 
     # Make a new instance of the simulation
     sim = Simulation(virus, pop_size, vacc_percentage, initial_infected)
