@@ -24,12 +24,13 @@ class Logger(object):
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
         f = open(self.file_name, "w")
-        f.write("# Simulation Base Information:\n")
+        f.write(f"# IMMUNITY SIMULATION SUMMARY FOR {virus_name.upper()}\n\n")
+        f.write("## Simulation Base Information:\n")
         f.write(f"+ Population: {pop_size}\n")
-        f.write(f"+ Percent Population Vaccinated: {vacc_percentage}\n")
+        f.write(f"+ Percent Population Vaccinated: {vacc_percentage}%\n")
         f.write(f"+ Virus Name: {virus_name}\n")
-        f.write(f"+ Virus Mortality Rate: {mortality_rate}\n")
-        f.write(f"+ Virus Reproduction Rate: {basic_repro_num}\n")
+        f.write(f"+ Virus Mortality Rate: {mortality_rate}%\n")
+        f.write(f"+ Virus Reproduction Rate: {basic_repro_num}%\n")
         f.close()
 
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
@@ -47,27 +48,28 @@ class Logger(object):
 
     def log_time_step(self, time_step_counter, population_alive, population_infected, population_dead):
         f = open(self.file_name, "a")
-        f.write(f"## Iteration : {time_step_counter}\n")
+        f.write(f"### Iteration : {time_step_counter}\n")
         f.write(f"+ Population Alive : {population_alive}\n")
         f.write(f"+ Population Infected : {population_infected}\n")
         f.write(f"+ Population Dead : {population_dead}\n")
         f.close()
 
     # ! Logging Functions for testing purposes
-    def log_create_population(self, vaccinated, unvaccinated, infected):
+    def log_create_population(self, vaccinated, unvaccinated, infected, total):
         f = open(self.file_name, "a")
-        f.write(f"## Population Build Check\n")
+        f.write(f"### Population Build Check\n")
         f.write(f"```diff\n")
         f.write(f"@@ Population Created @@\n")
         f.write(f"+ Vaccinated : {vaccinated}\n")
         f.write(f"+ Unvaccinated : {unvaccinated}\n")
         f.write(f"+ Infected : {infected}\n")
+        f.write(f"+ Total : {total}\n")
         f.write(f"```\n")
         f.close()
     
     def log_simulation_should_continue(self,time_step, check_dead, check_vac, check_alive, check_infected):
         f = open(self.file_name, "a")
-        f.write(f"## Iteration Number : {time_step}\n")
+        f.write(f"### Iteration Number : {time_step}\n")
         f.write(f"```diff\n")
         f.write(f"@@ Statistics @@\n")
         f.write(f"+ Alive : {check_alive}\n")

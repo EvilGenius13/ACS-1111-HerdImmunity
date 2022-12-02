@@ -54,8 +54,12 @@ class Simulation(object):
             person = Person(id_num, False, self.virus)
             start_population.append(person)
 
-        self.logger.write_metadata(self.pop_size, self.vacc_percentage, virus.name, virus.mortality_rate, virus.repro_rate)
-        self.logger.log_create_population(vaccinated_group, unvaccinated_group, infected_group)
+        vac_per = self.vacc_percentage * 100
+        vir_mor_per = self.virus.mortality_rate * 100
+        vir_rep_per = self.virus.repro_rate * 100
+
+        self.logger.write_metadata(self.pop_size, vac_per, virus.name, vir_mor_per, vir_rep_per)
+        self.logger.log_create_population(vaccinated_group, unvaccinated_group, infected_group, self.pop_size)
         return start_population
 
     # * OKAY
@@ -94,7 +98,7 @@ class Simulation(object):
         # if the simulation should continue or False if not.
         pass
 
-    # ? PRODUCTION ATTEMPT
+    # * OKAY
     def run(self):
         print(f"Simulation started. Please click on the log to view updates")
         self.time_step_counter = 0
@@ -124,7 +128,7 @@ class Simulation(object):
         # TODO: When the simulation completes you should conclude this with 
         # the logger. Send the final data to the logger. 
 
-    # ? PRODUCTION ATTEMPT
+    # * OKAY
     def time_step(self):
         interaction_length = 100
         if (len(self.population)) < 100:
@@ -165,7 +169,7 @@ class Simulation(object):
         pass
 
 
-    # ? PRODUCTION ATTEMPT    
+    # * OKAY    
     def interaction(self, infected_person, random_person):
         # TODO: Finish this method.
         
@@ -186,7 +190,7 @@ class Simulation(object):
             #     attribute can be changed to True at the end of the time step.
         # TODO: Call logger method during this method.
 
-    # ? PRODUCTION ATTEMPT
+    # * OKAY
     def _infect_newly_infected(self):
         #newly_infected_num = len(self.newly_infected)
         #self.logger.log_newly_infected(newly_infected_num)
