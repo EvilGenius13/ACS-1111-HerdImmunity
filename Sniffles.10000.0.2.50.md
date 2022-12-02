@@ -11,43 +11,43 @@
 + Unvaccinated : 7950
 + Infected : 50
 ```
-++ Iteration Number : 1
+## Iteration Number : 1
 ```diff
 @@ Statistics @@
 + Alive : 9994
 + Vaccinated : 2038
-! Infected : 1609
+! Infected : 1550
 - Dead : 6
 ```
-++ Iteration Number : 2
+## Iteration Number : 2
 ```diff
 @@ Statistics @@
-+ Alive : 9793
-+ Vaccinated : 3403
-! Infected : 6390
-- Dead : 207
++ Alive : 9786
++ Vaccinated : 3333
+! Infected : 6451
+- Dead : 214
 ```
-++ Iteration Number : 3
+## Iteration Number : 3
 ```diff
 @@ Statistics @@
-+ Alive : 9086
-+ Vaccinated : 8494
-! Infected : 592
-- Dead : 914
++ Alive : 9077
++ Vaccinated : 8467
+! Infected : 610
+- Dead : 923
 ```
-++ Iteration Number : 4
+## Iteration Number : 4
 ```diff
 @@ Statistics @@
-+ Alive : 9014
-+ Vaccinated : 9010
++ Alive : 9009
++ Vaccinated : 9005
 ! Infected : 4
-- Dead : 986
+- Dead : 991
 ```
-++ Iteration Number : 5
+## Iteration Number : 5
 ```diff
 @@ Statistics @@
-+ Alive : 9014
-+ Vaccinated : 9014
++ Alive : 9009
++ Vaccinated : 9009
 ! Infected : 0
-- Dead : 986
+- Dead : 991
 ```

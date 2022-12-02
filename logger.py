@@ -67,7 +67,7 @@ class Logger(object):
     
     def log_simulation_should_continue(self,time_step, check_dead, check_vac, check_alive, check_infected):
         f = open(self.file_name, "a")
-        f.write(f"++ Iteration Number : {time_step}\n")
+        f.write(f"## Iteration Number : {time_step}\n")
         f.write(f"```diff\n")
         f.write(f"@@ Statistics @@\n")
         f.write(f"+ Alive : {check_alive}\n")
