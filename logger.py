@@ -56,8 +56,9 @@ class Logger(object):
     # ! Logging Functions for testing purposes
     def log_create_population(self, vaccinated, unvaccinated, infected):
         f = open(self.file_name, "a")
+        f.write(f"++ Population Build Check\n")
         f.write(f"```diff\n")
-        f.write(f"! create_population() !\n")
+        f.write(f"@@ Population Created @@\n")
         f.write(f"+ Vaccinated : {vaccinated}\n")
         f.write(f"+ Unvaccinated : {unvaccinated}\n")
         f.write(f"+ Infected : {infected}\n")
@@ -70,9 +71,9 @@ class Logger(object):
         f.write(f"```diff\n")
         f.write(f"@@ Statistics @@\n")
         f.write(f"+ Alive : {check_alive}\n")
-        f.write(f"- Dead : {check_dead}\n")
         f.write(f"+ Vaccinated : {check_vac}\n")
         f.write(f"! Infected : {check_infected}\n")
+        f.write(f"- Dead : {check_dead}\n")
         f.write(f"```\n")
         f.close()
 
