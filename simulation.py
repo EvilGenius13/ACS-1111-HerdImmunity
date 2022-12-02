@@ -14,10 +14,11 @@ class Simulation(object):
         self.initial_infected = initial_infected 
         
         self.newly_infected = []
-        
+        self.body_bag = []
         self.total_alive = 0
         self.total_dead = 0
         self.total_infected = 0
+        self.total_vaccinated = 0
         
         self.time_step_counter = 0
         self.file_name = f"{virus.name}.{pop_size}.{vacc_percentage}.{initial_infected}.md"
@@ -52,7 +53,7 @@ class Simulation(object):
             self.total_infected += 1
             person = Person(id_num, False, self.virus)
             start_population.append(person)
-  
+
         self.logger.write_metadata(self.pop_size, self.vacc_percentage, virus.name, virus.mortality_rate, virus.repro_rate)
         self.logger.log_create_population(vaccinated_group, unvaccinated_group, infected_group)
         return start_population
@@ -64,13 +65,15 @@ class Simulation(object):
         sim_check_alive = 0
         sim_check_infections = 0
         
-        for person in self.population:
+        for person in self.body_bag:
             if person.is_alive == False:
                 sim_check_dead += 1
+        for person in self.population:
             if person.is_vaccinated == True:
                 sim_check_vaccinated += 1
-            if person.is_alive == True:
+        for person in self.population:
                 sim_check_alive += 1
+        for person in self.population:
             if person.infection:
                 sim_check_infections += 1
 
@@ -121,21 +124,28 @@ class Simulation(object):
 
     # ? PRODUCTION ATTEMPT
     def time_step(self):
+        interaction_length = 100
+        if (len(self.population)) < 100:
+            interaction_length = len(self.population)
+        
         for person in self.population:
-            if person.is_alive == True:
-                if person.infection == True:
-                    random_sample_group = random.sample(self.population, 100)
-                    for random_person in random_sample_group:
-                        self.interaction(person, random_person)
-                    chance_of_death = random.random()
-                    if chance_of_death < virus.mortality_rate:
-                        person.is_alive = False
-                        person.infection = False
-                        self.total_dead += 1
-                    else:
-                        person.is_vaccinated = True
-                        person.infection = None
-                        self.total_vaccinated += 1
+            if person.infection:
+                random_sample_group = random.sample(self.population, interaction_length)
+                for random_person in random_sample_group:
+                    self.interaction(person, random_person)
+                chance_of_death = random.random()
+                if chance_of_death < virus.mortality_rate:
+                    person.is_alive = False
+                    person.infection = False
+                    self.body_bag.append(person)
+                    self.total_dead += 1
+                    self.population.remove(person)
+                    self.total_infected -= 1
+                else:
+                    person.is_vaccinated = True
+                    person.infection = None
+                    self.total_vaccinated += 1
+                    self.total_infected -= 1
                         
         
         
@@ -158,11 +168,10 @@ class Simulation(object):
     def interaction(self, infected_person, random_person):
         # TODO: Finish this method.
         
-        if random_person.is_alive == True:
-            if random_person.is_vaccinated == False and random_person.infection == None:
-                 chance_of_infection = random.random()
-                 if chance_of_infection < virus.repro_rate:
-                    self.newly_infected.append(random_person)
+        if random_person.is_vaccinated == False and random_person.infection == None:
+            chance_of_infection = random.random()
+            if chance_of_infection < virus.repro_rate:
+                self.newly_infected.append(random_person)
 
         # The possible cases you'll need to cover are listed below:
             # random_person is vaccinated:
@@ -178,10 +187,11 @@ class Simulation(object):
 
     # ? PRODUCTION ATTEMPT
     def _infect_newly_infected(self):
+        newly_infected_num = len(self.newly_infected)
+        self.logger.log_newly_infected(newly_infected_num)
         for infected_person in self.newly_infected:
             infected_person.infection = self.virus
             self.total_infected += 1
-        self.logger.log_newly_infected(self.newly_infected)
         self.newly_infected = []
         
         
@@ -199,7 +209,7 @@ if __name__ == "__main__":
     virus = Virus(virus_name, repro_num, mortality_rate)
 
     # Set some values used by the simulation
-    pop_size = 1000
+    pop_size = 10000
     vacc_percentage = 0.2
     initial_infected = 50
 

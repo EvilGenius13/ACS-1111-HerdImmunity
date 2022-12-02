@@ -71,7 +71,7 @@ class Logger(object):
         f.write(f"+ Alive : {check_alive}\n")
         f.write(f"+ Dead : {check_dead}\n")
         f.write(f"+ Vaccinated : {check_vac}\n")
-        f.write(f"+ Vaccinated : {check_infected}\n")
+        f.write(f"+ Infected : {check_infected}\n")
         f.write(f"```\n")
         f.close()
 
