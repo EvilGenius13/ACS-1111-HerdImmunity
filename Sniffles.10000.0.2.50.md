@@ -4,7 +4,7 @@
 + Virus Name: Sniffles
 + Virus Mortality Rate: 0.12
 + Virus Reproduction Rate: 0.5
-++ Population Build Check
+## Population Build Check
 ```diff
 @@ Population Created @@
 + Vaccinated : 2000
@@ -22,32 +22,32 @@
 ++ Iteration Number : 2
 ```diff
 @@ Statistics @@
-+ Alive : 9791
-+ Vaccinated : 3397
-! Infected : 6392
-- Dead : 209
++ Alive : 9793
++ Vaccinated : 3403
+! Infected : 6390
+- Dead : 207
 ```
 ++ Iteration Number : 3
 ```diff
 @@ Statistics @@
-+ Alive : 9123
-+ Vaccinated : 8584
-! Infected : 539
-- Dead : 877
++ Alive : 9086
++ Vaccinated : 8494
+! Infected : 592
+- Dead : 914
 ```
 ++ Iteration Number : 4
 ```diff
 @@ Statistics @@
-+ Alive : 9047
-+ Vaccinated : 9042
-! Infected : 5
-- Dead : 953
++ Alive : 9014
++ Vaccinated : 9010
+! Infected : 4
+- Dead : 986
 ```
 ++ Iteration Number : 5
 ```diff
 @@ Statistics @@
-+ Alive : 9046
-+ Vaccinated : 9046
++ Alive : 9014
++ Vaccinated : 9014
 ! Infected : 0
-- Dead : 954
+- Dead : 986
 ```
