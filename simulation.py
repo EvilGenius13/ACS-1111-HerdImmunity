@@ -77,7 +77,7 @@ class Simulation(object):
             if person.infection:
                 sim_check_infections += 1
 
-        self.logger.log_simulation_should_continue(sim_check_dead, sim_check_vaccinated, sim_check_alive, sim_check_infections)
+        self.logger.log_simulation_should_continue(self.time_step_counter, sim_check_dead, sim_check_vaccinated, sim_check_alive, sim_check_infections)
         
         if sim_check_dead == self.pop_size:
             return False
@@ -110,6 +110,8 @@ class Simulation(object):
             self.time_step_counter += 1
             self.time_step()
             self._infect_newly_infected()
+            #self.total_alive = self.pop_size - self.total_dead
+            #self.logger.log_time_step(self.time_step_counter, self.total_alive, self.total_infected, self.total_dead,)
             should_continue = self._simulation_should_continue()
         print(f"Simulation complete after {self.time_step_counter} steps.")
         #TODO: LOGGER FOR FINAL STATUS 
@@ -149,8 +151,7 @@ class Simulation(object):
                         
         
         
-        self.total_alive = self.pop_size - self.total_dead
-        self.logger.log_time_step(self.time_step_counter, self.total_alive, self.total_infected, self.total_dead,)                  
+                          
         
         # This method will simulate interactions between people, calulate 
         # new infections, and determine if vaccinations and fatalities from infections
@@ -187,8 +188,8 @@ class Simulation(object):
 
     # ? PRODUCTION ATTEMPT
     def _infect_newly_infected(self):
-        newly_infected_num = len(self.newly_infected)
-        self.logger.log_newly_infected(newly_infected_num)
+        #newly_infected_num = len(self.newly_infected)
+        #self.logger.log_newly_infected(newly_infected_num)
         for infected_person in self.newly_infected:
             infected_person.infection = self.virus
             self.total_infected += 1
