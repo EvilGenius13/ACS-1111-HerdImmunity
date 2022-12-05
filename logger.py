@@ -1,6 +1,7 @@
 class Logger(object):
     def __init__(self, file_name):
         self.file_name = file_name
+        self.int_file_name = "interaction:" + self.file_name
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
         
@@ -34,12 +35,22 @@ class Logger(object):
         f.write(f"+ Virus Reproduction Rate: {basic_repro_num}%\n")
         f.close()
 
+    def start_interaction_log(self):
+        f = open(self.int_file_name, "w")
+
+    
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
+        f = open("interaction.txt", "a")
+        f.write(f"Did this work?\n")
+        f.write(f"+ Population Alive : \n")
+        f.write(f"+ Population Infected : \n")
+        f.write(f"+ Population Dead : \n")
+        f.close()
+        
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
 
     def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
         # TODO: Finish this method. If the person survives, did_die_from_infection

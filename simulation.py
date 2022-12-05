@@ -1,7 +1,9 @@
-import random, sys
+import random, sys, argparse
 from person import Person
 from logger import Logger
 from virus import Virus
+from progress.spinner import PixelSpinner
+
 
 # * OKAY
 class Simulation(object):
@@ -62,6 +64,7 @@ class Simulation(object):
         vir_mor_per = self.virus.mortality_rate * 100
         vir_rep_per = self.virus.repro_rate * 100
 
+        self.logger.start_interaction_log()
         self.logger.write_metadata(self.pop_size, vac_per, virus.name, vir_mor_per, vir_rep_per, self.initial_infected)
         self.logger.log_create_population(vaccinated_group, unvaccinated_group, infected_group, self.pop_size)
         return start_population
@@ -130,19 +133,24 @@ class Simulation(object):
 
 
         while should_continue:
-            print(f"Calculating Iteration {self.time_step_counter}")
+            calc = "Calculating Iteration " + str(self.time_step_counter) + " "
+            #print(f"Calculating Iteration {self.time_step_counter}")
+            bar = PixelSpinner(calc, max=1)
+            for i in range(1):
             # TODO: Increment the time_step_counter
             # TODO: for every iteration of this loop, call self.time_step() 
             # Call the _simulation_should_continue method to determine if 
             # the simulation should continue
             
-            self.time_step_counter += 1
-            self.time_step()
-            self._infect_newly_infected()
+                self.time_step_counter += 1
+                self.time_step()
+                self._infect_newly_infected()
             #self.total_alive = self.pop_size - self.total_dead
             #self.logger.log_time_step(self.time_step_counter, self.total_alive, self.total_infected, self.total_dead,)
-            should_continue = self._simulation_should_continue()
-        print(f"Simulation complete after {self.time_step_counter} steps.")
+                should_continue = self._simulation_should_continue()
+                bar.next()
+            bar.finish()
+        print(f"Simulation complete after {self.time_step_counter} iterations.")
         #TODO: LOGGER FOR FINAL STATUS 
 
 
@@ -202,6 +210,7 @@ class Simulation(object):
             chance_of_infection = random.random()
             if chance_of_infection < virus.repro_rate:
                 self.newly_infected.append(random_person)
+        
 
         # The possible cases you'll need to cover are listed below:
             # random_person is vaccinated:
@@ -233,17 +242,16 @@ class Simulation(object):
 
 if __name__ == "__main__":
     # Test your simulation here
-    virus_name = "Coin Flip"
-    repro_num = 0.5
-    mortality_rate = 0.5
+    virus_name = "Hydra"
+    repro_num = 0.2
+    mortality_rate = 0.4
     virus = Virus(virus_name, repro_num, mortality_rate)
 
     # Set some values used by the simulation
-    pop_size = 10000
+    pop_size = 50000
     vacc_percentage = 0.1
     initial_infected = 100
 
     # Make a new instance of the simulation
     sim = Simulation(virus, pop_size, vacc_percentage, initial_infected)
-
     sim.run()
