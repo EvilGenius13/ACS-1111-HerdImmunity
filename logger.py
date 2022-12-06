@@ -1,6 +1,8 @@
+
 class Logger(object):
     def __init__(self, file_name):
         self.file_name = file_name
+        self.int_file_name = "interaction:" + self.file_name
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
         
@@ -22,10 +24,11 @@ class Logger(object):
     #   of vaccinated, and the number of steps to reach the end of the simulation. 
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
-                       basic_repro_num, initial_infected):
+                       basic_repro_num, initial_infected, date):
         f = open(self.file_name, "w")
         f.write(f"# IMMUNITY SIMULATION SUMMARY FOR {virus_name.upper()}\n\n")
         f.write("## Simulation Base Information:\n")
+        f.write(f"### DATE: {date}\n")
         f.write(f"+ Population: {pop_size}\n")
         f.write(f"+ Percent Population Vaccinated: {vacc_percentage}%\n")
         f.write(f"+ Initial Infected: {initial_infected}\n")
@@ -34,12 +37,22 @@ class Logger(object):
         f.write(f"+ Virus Reproduction Rate: {basic_repro_num}%\n")
         f.close()
 
+    def start_interaction_log(self):
+        f = open(self.int_file_name, "w")
+
+    
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
+        f = open("interaction.txt", "a")
+        f.write(f"Did this work?\n")
+        f.write(f"+ Population Alive : \n")
+        f.write(f"+ Population Infected : \n")
+        f.write(f"+ Population Dead : \n")
+        f.close()
+        
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
 
     def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
         # TODO: Finish this method. If the person survives, did_die_from_infection
@@ -67,12 +80,13 @@ class Logger(object):
         f.write(f"```\n")
         f.close()
     
-    def log_simulation_should_continue(self,time_step, check_dead, change_dead, check_vac, change_vac, 
+    def log_simulation_should_continue(self, time_step, interactions, check_dead, change_dead, check_vac, change_vac, 
         check_alive, change_alive, check_infected, change_infected):
         f = open(self.file_name, "a")
         f.write(f"### Iteration Number : {time_step}\n")
         f.write(f"```diff\n")
         f.write(f"@@ Statistics @@\n")
+        f.write(f"! Interactions : {interactions}\n")
         f.write(f"+ Alive : {check_alive} | Percent Change: {change_alive}\n")
         f.write(f"+ Vaccinated : {check_vac} | Percent Change: {change_vac}\n")
         f.write(f"! Infected : {check_infected} | Percent Change: {change_infected}\n")
@@ -80,12 +94,13 @@ class Logger(object):
         f.write(f"```\n")
         f.close()
 
-    def log_interaction(self, newly_infected, total_infected):
+    def log_final(self, total_interactions, vaccine_saves, end_reason):
         f = open(self.file_name, "a")
         f.write(f"```diff\n")
-        f.write(f"! Interaction !\n")
-        f.write(f"+ Newly Infected : {newly_infected}\n")
-        f.write(f"+ Total Infected : {total_infected}\n")
+        f.write(f"@@ Final Numbers @@\n")
+        f.write(f"! Interactions : {total_interactions}\n")
+        f.write(f"+ Total Vaccine Saves : {vaccine_saves}\n")
+        f.write(f"+ Reason for Simulation End: {end_reason}\n")
         f.write(f"```\n")
         f.close()
 

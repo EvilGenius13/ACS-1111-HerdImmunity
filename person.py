@@ -14,12 +14,10 @@ class Person(object):
         chance_of_infection = random.random()
         if self.infection:
             if chance_of_infection < self.infection.mortality_rate:
-                self.is_alive = False
+                return False
             else:
-                self.is_alive = True
-                self.is_vaccinated = True
-                self.infection = None
-            return self.is_alive
+                return True
+            
 
     # Vaccinated Test
 def vaccinated_person_test():
@@ -55,15 +53,6 @@ def infection_survival_test():
     assert test_infection_person.is_vaccinated is False
     assert test_infection_person.infection is virus
 
-    surival_chance = test_infection_person.did_survive_infection()
-    if surival_chance:
-        assert test_infection_person.is_alive is True
-        assert test_infection_person.is_vaccinated is True
-        assert test_infection_person.infection is None
-
-    else:
-        assert test_infection_person.is_alive is False
-        assert test_infection_person.is_vaccinated is False
 
 # Testing Area
 if __name__ == "__main__":
