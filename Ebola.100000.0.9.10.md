@@ -1,7 +1,7 @@
 # IMMUNITY SIMULATION SUMMARY FOR EBOLA
 
 ## Simulation Base Information:
-### DATE: 2022-12-05 23:05:45.564935
+### DATE: 2022-12-05 23:13:52.783332
 + Population: 100000
 + Percent Population Vaccinated: 90.0%
 + Initial Infected: 10
@@ -19,150 +19,159 @@
 ### Iteration Number : 1
 ```diff
 @@ Statistics @@
-! Interactions : 600
-+ Alive : 99996 | Percent Change: -0.0
-+ Vaccinated : 90002 | Percent Change: 0.0
+! Interactions : 500
++ Alive : 99995 | Percent Change: -0.01
++ Vaccinated : 90000 | Percent Change: 0.0
 ! Infected : 19 | Percent Change: 90.0
-- Dead : 4 | Percent Change: Inf
+- Dead : 5 | Percent Change: Inf
 ```
 ### Iteration Number : 2
 ```diff
 @@ Statistics @@
-! Interactions : 1800
+! Interactions : 1700
 + Alive : 99982 | Percent Change: -0.01
-+ Vaccinated : 90006 | Percent Change: 0.0
-! Infected : 37 | Percent Change: 94.74
-- Dead : 18 | Percent Change: 350.0
++ Vaccinated : 90004 | Percent Change: 0.0
+! Infected : 40 | Percent Change: 110.53
+- Dead : 18 | Percent Change: 260.0
 ```
 ### Iteration Number : 3
 ```diff
 @@ Statistics @@
-! Interactions : 3700
-+ Alive : 99954 | Percent Change: -0.03
-+ Vaccinated : 90015 | Percent Change: 0.01
-! Infected : 89 | Percent Change: 140.54
-- Dead : 46 | Percent Change: 155.56
+! Interactions : 3900
++ Alive : 99955 | Percent Change: -0.03
++ Vaccinated : 90016 | Percent Change: 0.01
+! Infected : 93 | Percent Change: 132.5
+- Dead : 45 | Percent Change: 150.0
 ```
 ### Iteration Number : 4
 ```diff
 @@ Statistics @@
-! Interactions : 8700
-+ Alive : 99889 | Percent Change: -0.07
-+ Vaccinated : 90037 | Percent Change: 0.02
-! Infected : 214 | Percent Change: 140.45
-- Dead : 111 | Percent Change: 141.3
+! Interactions : 9300
++ Alive : 99902 | Percent Change: -0.05
++ Vaccinated : 90056 | Percent Change: 0.04
+! Infected : 216 | Percent Change: 132.26
+- Dead : 98 | Percent Change: 117.78
 ```
 ### Iteration Number : 5
 ```diff
 @@ Statistics @@
-! Interactions : 21100
-+ Alive : 99732 | Percent Change: -0.16
-+ Vaccinated : 90091 | Percent Change: 0.06
-! Infected : 465 | Percent Change: 117.29
-- Dead : 268 | Percent Change: 141.44
+! Interactions : 21200
++ Alive : 99741 | Percent Change: -0.16
++ Vaccinated : 90107 | Percent Change: 0.06
+! Infected : 475 | Percent Change: 119.91
+- Dead : 259 | Percent Change: 164.29
 ```
 ### Iteration Number : 6
 ```diff
 @@ Statistics @@
-! Interactions : 44700
-+ Alive : 99417 | Percent Change: -0.32
-+ Vaccinated : 90223 | Percent Change: 0.15
-! Infected : 1073 | Percent Change: 130.75
-- Dead : 583 | Percent Change: 117.54
+! Interactions : 46600
++ Alive : 99410 | Percent Change: -0.33
++ Vaccinated : 90242 | Percent Change: 0.15
+! Infected : 1002 | Percent Change: 110.95
+- Dead : 590 | Percent Change: 127.8
 ```
 ### Iteration Number : 7
 ```diff
 @@ Statistics @@
-! Interactions : 100000
-+ Alive : 98741 | Percent Change: -0.68
-+ Vaccinated : 90547 | Percent Change: 0.36
-! Infected : 1896 | Percent Change: 76.7
-- Dead : 1259 | Percent Change: 115.95
+! Interactions : 93600
++ Alive : 98770 | Percent Change: -0.64
++ Vaccinated : 90538 | Percent Change: 0.33
+! Infected : 1767 | Percent Change: 76.35
+- Dead : 1230 | Percent Change: 108.47
 ```
 ### Iteration Number : 8
 ```diff
 @@ Statistics @@
-! Interactions : 165600
-+ Alive : 97598 | Percent Change: -1.16
-+ Vaccinated : 91060 | Percent Change: 0.57
-! Infected : 2373 | Percent Change: 25.16
-- Dead : 2402 | Percent Change: 90.79
+! Interactions : 155500
++ Alive : 97694 | Percent Change: -1.09
++ Vaccinated : 91017 | Percent Change: 0.53
+! Infected : 2311 | Percent Change: 30.79
+- Dead : 2306 | Percent Change: 87.48
 ```
 ### Iteration Number : 9
 ```diff
 @@ Statistics @@
-! Interactions : 192300
-+ Alive : 96237 | Percent Change: -1.39
-+ Vaccinated : 91622 | Percent Change: 0.62
-! Infected : 2091 | Percent Change: -11.88
-- Dead : 3763 | Percent Change: 56.66
+! Interactions : 193000
++ Alive : 96334 | Percent Change: -1.39
++ Vaccinated : 91587 | Percent Change: 0.63
+! Infected : 2098 | Percent Change: -9.22
+- Dead : 3666 | Percent Change: 58.98
 ```
 ### Iteration Number : 10
 ```diff
 @@ Statistics @@
-! Interactions : 168500
-+ Alive : 95034 | Percent Change: -1.25
-+ Vaccinated : 92104 | Percent Change: 0.53
-! Infected : 1323 | Percent Change: -36.73
-- Dead : 4966 | Percent Change: 31.97
+! Interactions : 170400
++ Alive : 95152 | Percent Change: -1.23
++ Vaccinated : 92109 | Percent Change: 0.57
+! Infected : 1359 | Percent Change: -35.22
+- Dead : 4848 | Percent Change: 32.24
 ```
 ### Iteration Number : 11
 ```diff
 @@ Statistics @@
-! Interactions : 112000
-+ Alive : 94242 | Percent Change: -0.83
-+ Vaccinated : 92432 | Percent Change: 0.36
-! Infected : 633 | Percent Change: -52.15
-- Dead : 5758 | Percent Change: 15.95
+! Interactions : 113000
++ Alive : 94353 | Percent Change: -0.84
++ Vaccinated : 92440 | Percent Change: 0.36
+! Infected : 673 | Percent Change: -50.48
+- Dead : 5647 | Percent Change: 16.48
 ```
 ### Iteration Number : 12
 ```diff
 @@ Statistics @@
-! Interactions : 58200
-+ Alive : 93857 | Percent Change: -0.41
-+ Vaccinated : 92629 | Percent Change: 0.21
-! Infected : 222 | Percent Change: -64.93
-- Dead : 6143 | Percent Change: 6.69
+! Interactions : 61200
++ Alive : 93927 | Percent Change: -0.45
++ Vaccinated : 92626 | Percent Change: 0.2
+! Infected : 219 | Percent Change: -67.46
+- Dead : 6073 | Percent Change: 7.54
 ```
 ### Iteration Number : 13
 ```diff
 @@ Statistics @@
-! Interactions : 21500
-+ Alive : 93697 | Percent Change: -0.17
-+ Vaccinated : 92684 | Percent Change: 0.06
-! Infected : 65 | Percent Change: -70.72
-- Dead : 6303 | Percent Change: 2.6
+! Interactions : 21300
++ Alive : 93773 | Percent Change: -0.16
++ Vaccinated : 92685 | Percent Change: 0.06
+! Infected : 54 | Percent Change: -75.34
+- Dead : 6227 | Percent Change: 2.54
 ```
 ### Iteration Number : 14
 ```diff
 @@ Statistics @@
-! Interactions : 6500
-+ Alive : 93654 | Percent Change: -0.05
-+ Vaccinated : 92706 | Percent Change: 0.02
-! Infected : 14 | Percent Change: -78.46
-- Dead : 6346 | Percent Change: 0.68
+! Interactions : 5300
++ Alive : 93731 | Percent Change: -0.04
++ Vaccinated : 92696 | Percent Change: 0.01
+! Infected : 15 | Percent Change: -72.22
+- Dead : 6269 | Percent Change: 0.67
 ```
 ### Iteration Number : 15
 ```diff
 @@ Statistics @@
-! Interactions : 1400
-+ Alive : 93645 | Percent Change: -0.01
-+ Vaccinated : 92711 | Percent Change: 0.01
-! Infected : 4 | Percent Change: -71.43
-- Dead : 6355 | Percent Change: 0.14
+! Interactions : 1500
++ Alive : 93720 | Percent Change: -0.01
++ Vaccinated : 92700 | Percent Change: 0.0
+! Infected : 6 | Percent Change: -60.0
+- Dead : 6280 | Percent Change: 0.18
 ```
 ### Iteration Number : 16
 ```diff
 @@ Statistics @@
-! Interactions : 400
-+ Alive : 93642 | Percent Change: -0.0
-+ Vaccinated : 92712 | Percent Change: 0.0
+! Interactions : 600
++ Alive : 93716 | Percent Change: -0.0
++ Vaccinated : 92702 | Percent Change: 0.0
+! Infected : 2 | Percent Change: -66.67
+- Dead : 6284 | Percent Change: 0.06
+```
+### Iteration Number : 17
+```diff
+@@ Statistics @@
+! Interactions : 200
++ Alive : 93716 | Percent Change: 0.0
++ Vaccinated : 92704 | Percent Change: 0.0
 ! Infected : 0 | Percent Change: -100
-- Dead : 6358 | Percent Change: 0.05
+- Dead : 6284 | Percent Change: 0.0
 ```
 ```diff
 @@ Final Numbers @@
-! Interactions : 907000
-+ Total Vaccine Saves : 856393
+! Interactions : 898800
++ Total Vaccine Saves : 848257
 + Reason for Simulation End: No more infections
 ```

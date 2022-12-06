@@ -160,7 +160,7 @@ class Simulation(object):
                 should_continue = self._simulation_should_continue()
                 bar.next()
             #bar.finish()
-        print(f" Simulation complete after {self.time_step_counter} iterations.")
+        print(f"\nSimulation complete after {self.time_step_counter} iterations.")
         self.logger.log_final(self.total_interactions, self.saves_from_vaccine, self.end_reason)
         #TODO: LOGGER FOR FINAL STATUS 
 
